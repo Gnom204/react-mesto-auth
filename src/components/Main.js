@@ -8,7 +8,7 @@ function Main(props) {
         <main className="content">
             <section className="profile">
                 <div className="profile__avatar-bg" onClick={props.EditAvatarClick}>
-                    <img src={`${user ? user.avatar : ''}`} alt="" className="profile__avatar" />
+                    <img src={`${user ? user.avatar : ''}`} alt="Аватар Пользователя" className="profile__avatar" />
                 </div>
                 <div className="profile__intro">
                     <div className="profile__container">

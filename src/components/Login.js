@@ -21,16 +21,14 @@ function Login({ onLogin }) {
     }
 
     return (
-        <>
-            <div className="register">
-                <p className="register__heading">Вход</p>
-                <form onSubmit={handleSubmit} className="register__form" id="loginForm">
-                    <input onChange={handleChange} type="email" name="email" placeholder="Email" className="register__input" id="loginEmailInput" />
-                    <input onChange={handleChange} type="password" name="password" placeholder="Пароль" className="register__input" id="loginPasswordInput" />
-                    <button type="submit" className="register__button">Войти</button>
-                </form>
-            </div>
-        </>
+        <div className="register">
+            <p className="register__heading">Вход</p>
+            <form onSubmit={handleSubmit} className="register__form" id="loginForm">
+                <input onChange={handleChange} value={formValue.email} type="email" name="email" placeholder="Email" className="register__input" id="loginEmailInput" />
+                <input onChange={handleChange} value={formValue.password} type="password" name="password" placeholder="Пароль" className="register__input" id="loginPasswordInput" />
+                <button type="submit" className="register__button">Войти</button>
+            </form>
+        </div>
     )
 }
 

@@ -28,6 +28,7 @@ function App() {
   const [loggedIn, setIsLoggedIn] = React.useState(false)
   const [cards, setCards] = React.useState([]);
   const [userEmail, setUserEmail] = React.useState('');
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard
   useEffect(() => {
     api.loadingCard()
       .then((res) => {
@@ -39,6 +40,9 @@ function App() {
     api.loadingUserInfo()
       .then((res) => {
         setCurrentUser(res)
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }, [])
 
@@ -72,6 +76,21 @@ function App() {
     setIsOpenError(false);
     setIsOpenCurrent(false);
   }
+
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if (evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if (isOpen) { // навешиваем только при открытии
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen])
+
   function handleCardClick(card) {
     setSelectedCard(card);
   }
@@ -118,7 +137,6 @@ function App() {
         console.log(res);
         setIsOpenCurrent(true);
         navigate('/sign-in');
-
       })
       .catch((err) => {
         console.log(err)
